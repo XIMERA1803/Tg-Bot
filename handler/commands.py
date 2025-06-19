@@ -2,7 +2,7 @@ import time
 import random
 
 from pyexpat.errors import messages
-
+from keyboards.inline import reply_ky
 from keyboards.inline import reply_key
 from enum import global_enum
 from mailbox import Message
@@ -112,7 +112,7 @@ async def fishing(message:  types.Message):
             await message.answer(f"рыба сорвалась... хочешь еще? ", reply_markup=reply_kb)
             await message.answer(f"😭")
 
-@command_router.message(F.text == "обновить удочку")
+@command_router.message(F.text == "Удочку")
 async def up_rod(message:  types.Message):
     user_id = message.from_user.id
     data = get_user_data(user_id)
@@ -149,7 +149,7 @@ async def up_rod(message:  types.Message):
         elif data['money'] < 1000:
             await message.answer(f"не хватает монет")
 
-@command_router.message(F.text == "обновить приманку")
+@command_router.message(F.text == "Приманку")
 async def up_bait(message:  types.Message):
     user_id = message.from_user.id
     data = get_user_data(user_id)
@@ -216,30 +216,7 @@ async def profile(message:  types.Message):
 async def profile(message:  types.Message):
     await message.answer(text = "главное меню", reply_markup=reply_kb)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@command_router.message(F.text == "Обновить")
+async def profile(message:  types.Message):
+    await message.answer(text = "главное меню", reply_markup=reply_ky)
 
