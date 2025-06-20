@@ -197,7 +197,6 @@ async def up_bait(message:  types.Message):
             await message.answer_photo(photo="https://sun9-13.userapi.com/impf/B-HOcl_DJB4IE2tt_0rKSGnBeBCdHXaJub3HJg/nc6_qAH7yho.jpg?size=514x426&quality=95&sign=4fc3644265a3135b5f1deaf0d7540c8c&c_uniq_tag=yLz387hX7gw67aL-EYizrZj2t8bpY2OFRwuEbLcroeM&type=album", caption = "Вы обновили приманку")
         elif data['money'] < 800:
             await message.answer(f"Не хватает монет")
-
 @command_router.message(F.text == "Профиль")
 async def profile(message:  types.Message):
     user_id = message.from_user.id
@@ -229,16 +228,14 @@ async def buy(message:  types.Message):
     await message.answer(text = "Выбирайте что купить", reply_markup=reply_ky)
 
 @command_router.message(F.text == "Сбросить прогресс")
-async def profile(message:  types.Message):
+async def proile(message:  types.Message):
     await message.answer(text = "Точно? Вы потеряете весь прогресс", reply_markup=reply_kyq)
 
 @command_router.message(F.text == "Точно")
-async def profile(message:  types.Message):
+async def toch(message:  types.Message):
     del_user(message.from_user.id)
-    money = 0
-    lvl_fishing_rod = 0
-    lvl_fishing_bait = 0
+    user_data["money"] = 0
+    user_data["lvl_rod"] = 1
+    user_data["lvl_bait"] = 1
     await message.answer(text = "Вы сбросили прогресс", reply_markup=reply_kb)
-
-
 

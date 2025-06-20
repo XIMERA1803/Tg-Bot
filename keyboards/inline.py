@@ -42,24 +42,7 @@ reply_kyw = ReplyKeyboardMarkup(
 reply_kyq = ReplyKeyboardMarkup(
     keyboard=[
         [KeyboardButton(text ='Точно', callback = "fishing")],
+        [KeyboardButton(text ='Назад', callback = "fishing")]
     ],
     resize_keyboard=True
 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
