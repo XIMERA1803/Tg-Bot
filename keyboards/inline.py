@@ -1,10 +1,10 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 reply_kb = ReplyKeyboardMarkup(
     keyboard=[
-        [KeyboardButton(text ='закинуть удочку', callback = "fishing")],
-        [KeyboardButton(text ="Обновить", callback = "bait")],
-        [KeyboardButton(text = 'цены',callback = "celi")],
-        [KeyboardButton(text ="профиль", callback = "profil")]
+        [KeyboardButton(text ='Закинуть удочку', callback = "fishing")],
+        [KeyboardButton(text ="Магазин", callback = "bait")],
+        [KeyboardButton(text ="Профиль", callback = "profil")],
+        [KeyboardButton(text ="Сбросить прогресс", callback = "bait")]
 
     ],
     resize_keyboard=True
@@ -29,11 +29,22 @@ reply_ky = ReplyKeyboardMarkup(
     resize_keyboard=True
 )
 
+reply_kyw = ReplyKeyboardMarkup(
+    keyboard=[
+        [KeyboardButton(text ='Цены', callback = "fishing")],
+        [KeyboardButton(text ='Купить', callback = "fishing")],
+        [KeyboardButton(text ='Назад', callback = "fishing")]
+    ],
+    resize_keyboard=True
+)
 
 
-
-
-
+reply_kyq = ReplyKeyboardMarkup(
+    keyboard=[
+        [KeyboardButton(text ='Точно', callback = "fishing")],
+    ],
+    resize_keyboard=True
+)
 
 
 

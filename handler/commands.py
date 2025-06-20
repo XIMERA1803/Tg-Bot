@@ -1,7 +1,11 @@
 import time
 import random
 
+from aiogram import Bot
+from BD import del_user
+from keyboards.inline import reply_kyq
 from pyexpat.errors import messages
+from keyboards.inline import reply_kyw
 from keyboards.inline import reply_ky
 from keyboards.inline import reply_key
 from enum import global_enum
@@ -53,63 +57,63 @@ def update_user_data(user_id):
 async def start(message:  types.Message):
     user_id = message.from_user.id
     get_user_data(user_id)
-    await message.answer("привет, я бот в котором ты сможешь побыть рыбаком! \nОбновляй удочки что бы уменьшить шанс срывания рыбы с крючка\n Обновляй приманки что бы разблокировать новые рыбы")
-    await message.answer("выбирайте:", reply_markup=reply_kb)
+    await message.answer("Привет, я бот в котором ты сможешь побыть рыбаком! \nОбнови удочки что бы уменьшить шанс срывания рыбы с крючка\nОбнови приманки что бы разблокировать новые рыбы")
+    await message.answer("Выбирайте:", reply_markup=reply_kb)
 
-@command_router.message(F.text == "закинуть удочку")
+@command_router.message(F.text == "Закинуть удочку")
 async def fishing(message:  types.Message):
     user_id = message.from_user.id
     data = get_user_data(user_id)
     a = (random.choice(listok))
     chance = random.randint(0, 100)
     a1 = cena[a]
-    await message.answer("процесс...", reply_markup=ReplyKeyboardRemove())
+    await message.answer("Процесс...", reply_markup=ReplyKeyboardRemove())
     time.sleep(3)
     lvl_fishing_rod = data['lvl_rod']
     if lvl_fishing_rod == 1:
-        if chance > 40:
+        if chance < 40:
             data['money'] += a1
             update_user_data(user_id)
-            await message.answer(f"ты поймал рыбу {a}, за нее ты получишь - {a1} монет . Твой баланс - {data['money']} ", reply_markup=reply_kb)
+            await message.answer(f"Ты поймал рыбу {a}, за нее ты получишь - {a1} монет . Твой баланс - {data['money']} ", reply_markup=reply_kb)
             await message.answer(f"😊")
         else:
-            await message.answer(f"рыба сорвалась... хочешь еще? ", reply_markup=reply_kb)
+            await message.answer(f"Рыба сорвалась... хочешь еще? ", reply_markup=reply_kb)
             await message.answer(f"😭")
     if lvl_fishing_rod == 2:
-        if chance > 50:
+        if chance < 50:
             data['money'] += a1
             update_user_data(user_id)
-            await message.answer(f"ты поймал рыбу {a}, за нее ты получишь - {a1} монет . Твой баланс - {data['money']} ", reply_markup=reply_kb)
+            await message.answer(f"Ты поймал рыбу {a}, за нее ты получишь - {a1} монет . Твой баланс - {data['money']} ", reply_markup=reply_kb)
             await message.answer(f"😊")
         else:
-            await message.answer(f"рыба сорвалась... хочешь еще? ", reply_markup=reply_kb)
+            await message.answer(f"Рыба сорвалась... хочешь еще? ", reply_markup=reply_kb)
             await message.answer(f"😭")
     if lvl_fishing_rod == 3:
-        if chance > 60:
+        if chance < 60:
             data['money'] += a1
             update_user_data(user_id)
-            await message.answer(f"ты поймал рыбу {a}, за нее ты получишь - {a1} монет . Твой баланс - {data['money']} ", reply_markup=reply_kb)
+            await message.answer(f"Ты поймал рыбу {a}, за нее ты получишь - {a1} монет . Твой баланс - {data['money']} ", reply_markup=reply_kb)
             await message.answer(f"😊")
         else:
-            await message.answer(f"рыба сорвалась... хочешь еще? ", reply_markup=reply_kb)
+            await message.answer(f"Рыба сорвалась... хочешь еще? ", reply_markup=reply_kb)
             await message.answer(f"😭")
     if lvl_fishing_rod == 4:
-        if chance > 70:
+        if chance < 70:
             data['money'] += a1
             update_user_data(user_id)
-            await message.answer(f"ты поймал рыбу {a}, за нее ты получишь - {a1} монет . Твой баланс - {data['money']} ", reply_markup=reply_kb)
+            await message.answer(f"Ты поймал рыбу {a}, за нее ты получишь - {a1} монет . Твой баланс - {data['money']} ", reply_markup=reply_kb)
             await message.answer(f"😊")
         else:
-            await message.answer(f"рыба сорвалась... хочешь еще? ", reply_markup=reply_kb)
+            await message.answer(f"Рыба сорвалась... хочешь еще? ", reply_markup=reply_kb)
             await message.answer(f"😭")
     if lvl_fishing_rod == 5:
-        if chance > 90:
+        if chance < 90:
             data['money'] += a1
             update_user_data(user_id)
-            await message.answer(f"ты поймал рыбу {a}, за нее ты получишь - {a1} монет . Твой баланс - {data['money']} ", reply_markup=reply_kb)
+            await message.answer(f"Ты поймал рыбу {a}, за нее ты получишь - {a1} монет . Твой баланс - {data['money']} ", reply_markup=reply_kb)
             await message.answer(f"😊")
         else:
-            await message.answer(f"рыба сорвалась... хочешь еще? ", reply_markup=reply_kb)
+            await message.answer(f"Рыба сорвалась... хочешь еще? ", reply_markup=reply_kb)
             await message.answer(f"😭")
 
 @command_router.message(F.text == "Удочку")
@@ -121,33 +125,33 @@ async def up_rod(message:  types.Message):
             data['lvl_rod'] = 2
             data['money'] -= 100
             update_user_data(user_id)
-            await message.answer_photo(photo="https://www.atbaits.com/img/20151021_1210192058.jpg", caption = "вы обновили удочку")
+            await message.answer_photo(photo="https://sun9-13.userapi.com/impf/B-HOcl_DJB4IE2tt_0rKSGnBeBCdHXaJub3HJg/nc6_qAH7yho.jpg?size=514x426&quality=95&sign=4fc3644265a3135b5f1deaf0d7540c8c&c_uniq_tag=yLz387hX7gw67aL-EYizrZj2t8bpY2OFRwuEbLcroeM&type=album", caption = "Вы обновили удочку")
         else:
-            await message.answer(f"не хватает монет")
+            await message.answer(f"Не хватает монет")
     elif data['lvl_rod'] == 2:
         if data['money'] > 300:
             data['lvl_rod'] = 3
             data['money'] -= 300
             update_user_data(user_id)
-            await message.answer_photo(photo="https://www.atbaits.com/img/20151021_1210192058.jpg", caption = "вы обновили удочку")
+            await message.answer_photo(photo="https://sun9-13.userapi.com/impf/B-HOcl_DJB4IE2tt_0rKSGnBeBCdHXaJub3HJg/nc6_qAH7yho.jpg?size=514x426&quality=95&sign=4fc3644265a3135b5f1deaf0d7540c8c&c_uniq_tag=yLz387hX7gw67aL-EYizrZj2t8bpY2OFRwuEbLcroeM&type=album", caption = "Вы обновили удочку")
         elif data['money'] < 300:
-            await message.answer(f"не хватает монет")
+            await message.answer(f"Не хватает монет")
     elif data['lvl_rod'] == 3:
         if data['money'] > 500:
             data['lvl_rod'] = 4
             data['money'] -= 500
             update_user_data(user_id)
-            await message.answer_photo(photo="https://www.atbaits.com/img/20151021_1210192058.jpg", caption = "вы обновили удочку")
+            await message.answer_photo(photo="https://sun9-13.userapi.com/impf/B-HOcl_DJB4IE2tt_0rKSGnBeBCdHXaJub3HJg/nc6_qAH7yho.jpg?size=514x426&quality=95&sign=4fc3644265a3135b5f1deaf0d7540c8c&c_uniq_tag=yLz387hX7gw67aL-EYizrZj2t8bpY2OFRwuEbLcroeM&type=album", caption = "Вы обновили удочку")
         elif data['money'] < 500:
-            await message.answer(f"не хватает монет")
+            await message.answer(f"Не хватает монет")
     elif data['lvl_rod'] == 4:
         if data['money'] > 1000:
             data['lvl_rod'] = 5
             data['money'] -= 1000
             update_user_data(user_id)
-            await message.answer_photo(photo="https://www.atbaits.com/img/20151021_1210192058.jpg", caption = "вы обновили удочку")
+            await message.answer_photo(photo="https://sun9-13.userapi.com/impf/B-HOcl_DJB4IE2tt_0rKSGnBeBCdHXaJub3HJg/nc6_qAH7yho.jpg?size=514x426&quality=95&sign=4fc3644265a3135b5f1deaf0d7540c8c&c_uniq_tag=yLz387hX7gw67aL-EYizrZj2t8bpY2OFRwuEbLcroeM&type=album", caption = "Вы обновили удочку")
         elif data['money'] < 1000:
-            await message.answer(f"не хватает монет")
+            await message.answer(f"Не хватает монет")
 
 @command_router.message(F.text == "Приманку")
 async def up_bait(message:  types.Message):
@@ -160,9 +164,9 @@ async def up_bait(message:  types.Message):
             update_user_data(user_id)
             listok.pop(0)
             listok.append("щука")
-            await message.answer_photo(photo="https://avatars.mds.yandex.net/i?id=59013680d8b630a604e89fca6a960395_l-9599239-images-thumbs&n=13", caption = "вы обновили приманку")
+            await message.answer_photo(photo="https://sun9-13.userapi.com/impf/B-HOcl_DJB4IE2tt_0rKSGnBeBCdHXaJub3HJg/nc6_qAH7yho.jpg?size=514x426&quality=95&sign=4fc3644265a3135b5f1deaf0d7540c8c&c_uniq_tag=yLz387hX7gw67aL-EYizrZj2t8bpY2OFRwuEbLcroeM&type=album", caption = "Вы обновили приманку")
         elif data['money'] < 50:
-            await message.answer(f"не хватает монет")
+            await message.answer(f"Не хватает монет")
     elif data['lvl_bait'] == 2:
         if data['money'] > 200:
             data['lvl_bait'] = 3
@@ -170,9 +174,9 @@ async def up_bait(message:  types.Message):
             update_user_data(user_id)
             listok.pop(0)
             listok.append("сом")
-            await message.answer_photo(photo="https://avatars.mds.yandex.net/i?id=59013680d8b630a604e89fca6a960395_l-9599239-images-thumbs&n=13", caption = "вы обновили приманку")
+            await message.answer_photo(photo="https://sun9-13.userapi.com/impf/B-HOcl_DJB4IE2tt_0rKSGnBeBCdHXaJub3HJg/nc6_qAH7yho.jpg?size=514x426&quality=95&sign=4fc3644265a3135b5f1deaf0d7540c8c&c_uniq_tag=yLz387hX7gw67aL-EYizrZj2t8bpY2OFRwuEbLcroeM&type=album", caption = "Вы обновили приманку")
         elif data['money'] < 200:
-            await message.answer(f"не хватает монет")
+            await message.answer(f"Не хватает монет")
     elif data['lvl_bait'] == 3:
         if data['money'] > 600:
             data['lvl_bait'] = 4
@@ -180,9 +184,9 @@ async def up_bait(message:  types.Message):
             update_user_data(user_id)
             listok.pop(0)
             listok.append("семга")
-            await message.answer_photo(photo="https://avatars.mds.yandex.net/i?id=59013680d8b630a604e89fca6a960395_l-9599239-images-thumbs&n=13", caption = "вы обновили приманку")
+            await message.answer_photo(photo="https://sun9-13.userapi.com/impf/B-HOcl_DJB4IE2tt_0rKSGnBeBCdHXaJub3HJg/nc6_qAH7yho.jpg?size=514x426&quality=95&sign=4fc3644265a3135b5f1deaf0d7540c8c&c_uniq_tag=yLz387hX7gw67aL-EYizrZj2t8bpY2OFRwuEbLcroeM&type=album", caption = "Вы обновили приманку")
         elif data['money'] < 600:
-            await message.answer(f"не хватает монет")
+            await message.answer(f"Не хватает монет")
     elif data['lvl_bait'] == 4:
         if data['money'] > 800:
             data['lvl_bait'] = 5
@@ -190,33 +194,51 @@ async def up_bait(message:  types.Message):
             update_user_data(user_id)
             listok.pop(0)
             listok.append("тунец")
-            await message.answer_photo(photo="https://avatars.mds.yandex.net/i?id=59013680d8b630a604e89fca6a960395_l-9599239-images-thumbs&n=13", caption = "вы обновили приманку")
+            await message.answer_photo(photo="https://sun9-13.userapi.com/impf/B-HOcl_DJB4IE2tt_0rKSGnBeBCdHXaJub3HJg/nc6_qAH7yho.jpg?size=514x426&quality=95&sign=4fc3644265a3135b5f1deaf0d7540c8c&c_uniq_tag=yLz387hX7gw67aL-EYizrZj2t8bpY2OFRwuEbLcroeM&type=album", caption = "Вы обновили приманку")
         elif data['money'] < 800:
-            await message.answer(f"не хватает монет")
+            await message.answer(f"Не хватает монет")
 
-@command_router.message(F.text == "профиль")
+@command_router.message(F.text == "Профиль")
 async def profile(message:  types.Message):
     user_id = message.from_user.id
     data = get_user_data(user_id)
     await message.answer(f"кол-во монет - {data['money']}, уровень удочки - {data['lvl_rod']}, уровень приманки - {data['lvl_bait']}")
 
-@command_router.message(F.text == "цены")
-async def profile(message:  types.Message):
-    await message.answer(f"удочки или приманки?",reply_markup=reply_key)
+@command_router.message(F.text == "Цены")
+async def ceni(message:  types.Message):
+    await message.answer(f"Удочки или приманки?",reply_markup=reply_key)
 
 @command_router.message(F.text == "Удочки")
-async def profile(message:  types.Message):
-    await message.answer(f"удочка 2 уровня стоит {fishing_rod[2]} \nудочка 3 уровня стоит {fishing_rod[3]} \nудочка 4 уровня стоит {fishing_rod[4]} \nудочка 5 уровня стоит{fishing_rod[5]}",reply_markup=reply_kb)
+async def rods(message:  types.Message):
+    await message.answer(f"Удочка 2 уровня стоит {fishing_rod[2]} \nУдочка 3 уровня стоит {fishing_rod[3]} \nУдочка 4 уровня стоит {fishing_rod[4]} \nУдочка 5 уровня стоит {fishing_rod[5]}",reply_markup=reply_kb)
 
 @command_router.message(F.text == "Приманки")
-async def profile(message:  types.Message):
-    await message.answer(f"приманка 2 уровня стоит {fishing_bait[2]} \nприманка 3 уровня стоит {fishing_bait[3]} \nприманка 4 уровня стоит {fishing_bait[4]} \nприманка 5 уровня стоит{fishing_rod[5]}",reply_markup=reply_kb)
+async def baits(message:  types.Message):
+    await message.answer(f"Приманка 2 уровня стоит {fishing_bait[2]} \nПриманка 3 уровня стоит {fishing_bait[3]} \nПриманка 4 уровня стоит {fishing_bait[4]} \nПриманка 5 уровня стоит {fishing_rod[5]}",reply_markup=reply_kb)
 
 @command_router.message(F.text == "Назад")
-async def profile(message:  types.Message):
-    await message.answer(text = "главное меню", reply_markup=reply_kb)
+async def back(message:  types.Message):
+    await message.answer(text = "Вы вернулись в главное меню", reply_markup=reply_kb)
 
-@command_router.message(F.text == "Обновить")
+@command_router.message(F.text == "Магазин")
+async def rod_bait(message:  types.Message):
+    await message.answer(text = "Купить или Посмотреть цены?", reply_markup=reply_kyw)
+
+@command_router.message(F.text == "Купить")
+async def buy(message:  types.Message):
+    await message.answer(text = "Выбирайте что купить", reply_markup=reply_ky)
+
+@command_router.message(F.text == "Сбросить прогресс")
 async def profile(message:  types.Message):
-    await message.answer(text = "главное меню", reply_markup=reply_ky)
+    await message.answer(text = "Точно? Вы потеряете весь прогресс", reply_markup=reply_kyq)
+
+@command_router.message(F.text == "Точно")
+async def profile(message:  types.Message):
+    del_user(message.from_user.id)
+    money = 0
+    lvl_fishing_rod = 0
+    lvl_fishing_bait = 0
+    await message.answer(text = "Вы сбросили прогресс", reply_markup=reply_kb)
+
+
 
