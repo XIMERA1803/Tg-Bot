@@ -1,28 +1,17 @@
 import time
 import random
 
-from aiogram import Bot
 from BD import del_user
 from keyboards.inline import reply_kyq
 from pyexpat.errors import messages
 from keyboards.inline import reply_kyw
 from keyboards.inline import reply_ky
 from keyboards.inline import reply_key
-from enum import global_enum
-from mailbox import Message
-from turtledemo.penrose import start
 from aiogram import Router, types
 from aiogram.filters import Command
 from aiogram import F
-from aiogram.types import FSInputFile
 from aiogram.types import ReplyKeyboardRemove
 from keyboards.inline import reply_kb
-from handler.callback import callbacks_router
-from aiogram.fsm.storage.memory import MemoryStorage
-from aiogram.fsm.state import State , StatesGroup
-#from BD import logger
-#from BD import get_note_by_id
-from BD import cursor
 from BD import load_user, save_user
 
 command_router = Router()
