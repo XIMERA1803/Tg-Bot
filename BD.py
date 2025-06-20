@@ -29,3 +29,10 @@ def load_user(user_id):
         SELECT money, lvl_rod, lvl_bait FROM PLAYERS WHERE id = ?
     ''', (user_id,))
     return cursor.fetchone()
+
+
+def del_user(user_id):
+    cursor.execute('''
+        DELETE FROM PLAYERS WHERE id=?
+    ''', (user_id,))
+    conn.commit()

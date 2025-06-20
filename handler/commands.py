@@ -234,8 +234,5 @@ async def proile(message:  types.Message):
 @command_router.message(F.text == "Точно")
 async def toch(message:  types.Message):
     del_user(message.from_user.id)
-    user_data["money"] = 0
-    user_data["lvl_rod"] = 1
-    user_data["lvl_bait"] = 1
     await message.answer(text = "Вы сбросили прогресс", reply_markup=reply_kb)
 
